@@ -58,11 +58,11 @@ export default function EndpointDetails() {
   }, [id]);
 
   if (loading) return (
-    <div className="flex justify-center items-center min-h-screen">
-      <RefreshCw className="animate-spin text-indigo-600" size={48} />
+    <div className="flex justify-center items-center min-h-screen bg-white dark:bg-gray-900">
+      <RefreshCw className="animate-spin text-indigo-600 dark:text-indigo-400" size={48} />
     </div>
   );
-  if (!endpoint) return <div className="p-8 text-center">Endpoint not found</div>;
+  if (!endpoint) return <div className="p-8 text-center dark:text-white">Endpoint not found</div>;
 
   const chartLogs = [...logs].reverse();
   const filteredChartLogs = chartLogs.filter(log => log.success && log.response_time_ms > 0);
@@ -82,15 +82,15 @@ export default function EndpointDetails() {
   };
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 max-w-7xl mx-auto min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
       <div className="mb-6">
-        <Link to="/" className="inline-flex items-center text-indigo-600 hover:text-indigo-900 font-medium">
+        <Link to="/" className="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-900 dark:hover:text-indigo-300 font-medium">
           <ArrowLeft className="h-4 w-4 mr-2" /> Back to Dashboard
         </Link>
       </div>
 
-      <div className="bg-white shadow-xl rounded-2xl overflow-hidden mb-8">
-        <div className="bg-indigo-600 px-6 py-8 text-white">
+      <div className="bg-white dark:bg-gray-800 shadow-xl rounded-2xl overflow-hidden mb-8 transition-colors duration-200">
+        <div className="bg-indigo-600 dark:bg-indigo-700 px-6 py-8 text-white">
           <div className="flex justify-between items-center">
             <div>
               <h1 className="text-3xl font-bold">{endpoint.name}</h1>
@@ -108,30 +108,30 @@ export default function EndpointDetails() {
           </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x border-t">
+        <div className="grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x border-t dark:border-gray-700 dark:divide-gray-700">
           <div className="p-6 text-center">
-            <p className="text-sm text-gray-500 uppercase font-semibold">Uptime Percentage</p>
-            <p className="text-2xl font-bold text-gray-900">{stats?.uptime_percentage}%</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 uppercase font-semibold">Uptime Percentage</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats?.uptime_percentage}%</p>
           </div>
           <div className="p-6 text-center">
-            <p className="text-sm text-gray-500 uppercase font-semibold">Avg Response Time</p>
-            <p className="text-2xl font-bold text-gray-900">{stats?.average_response_time} ms</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 uppercase font-semibold">Avg Response Time</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats?.average_response_time} ms</p>
           </div>
           <div className="p-6 text-center">
-            <p className="text-sm text-gray-500 uppercase font-semibold">Total Checks</p>
-            <p className="text-2xl font-bold text-gray-900">{stats?.total_checks}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 uppercase font-semibold">Total Checks</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">{stats?.total_checks}</p>
           </div>
           <div className="p-6 text-center">
-            <p className="text-sm text-gray-500 uppercase font-semibold">Method / Interval</p>
-            <p className="text-2xl font-bold text-gray-900">{endpoint.method} / {endpoint.interval}s</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 uppercase font-semibold">Method / Interval</p>
+            <p className="text-2xl font-bold text-gray-900 dark:text-white">{endpoint.method} / {endpoint.interval}s</p>
           </div>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 bg-white shadow-lg rounded-2xl p-6">
-          <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-            <Clock className="text-indigo-600" /> Response Time History
+        <div className="lg:col-span-2 bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-6 transition-colors duration-200">
+          <h2 className="text-xl font-bold mb-6 flex items-center gap-2 dark:text-white">
+            <Clock className="text-indigo-600 dark:text-indigo-400" /> Response Time History
           </h2>
           <div className="h-[400px]">
             <Line 
@@ -139,19 +139,34 @@ export default function EndpointDetails() {
               options={{ 
                 responsive: true, 
                 maintainAspectRatio: false,
-                scales: { y: { beginAtZero: true } }
+                scales: { 
+                  y: { 
+                    beginAtZero: true,
+                    grid: { color: 'rgba(156, 163, 175, 0.1)' },
+                    ticks: { color: 'rgb(156, 163, 175)' }
+                  },
+                  x: {
+                    grid: { color: 'rgba(156, 163, 175, 0.1)' },
+                    ticks: { color: 'rgb(156, 163, 175)' }
+                  }
+                },
+                plugins: {
+                  legend: {
+                    labels: { color: 'rgb(156, 163, 175)' }
+                  }
+                }
               }} 
             />
           </div>
         </div>
 
-        <div className="bg-white shadow-lg rounded-2xl overflow-hidden">
-          <div className="px-6 py-4 border-b bg-gray-50">
-            <h2 className="text-xl font-bold">Recent Incident Log</h2>
+        <div className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl overflow-hidden transition-colors duration-200">
+          <div className="px-6 py-4 border-b dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50">
+            <h2 className="text-xl font-bold dark:text-white">Recent Incident Log</h2>
           </div>
-          <div className="divide-y max-h-[480px] overflow-y-auto">
+          <div className="divide-y dark:divide-gray-700 max-h-[480px] overflow-y-auto">
             {logs.map((log) => (
-              <div key={log.id} className="p-4 hover:bg-gray-50 transition">
+              <div key={log.id} className="p-4 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition">
                 <div className="flex justify-between items-start">
                   <div className="flex gap-3">
                     {log.success ? (
@@ -160,15 +175,15 @@ export default function EndpointDetails() {
                       <XCircle className="text-red-500 mt-1" size={18} />
                     )}
                     <div>
-                      <p className="font-bold text-gray-800">
+                      <p className="font-bold text-gray-800 dark:text-gray-200">
                         {log.success ? `Success: ${log.status_code}` : "Request Failed"}
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-gray-500 dark:text-gray-400">
                         {new Date(log.checked_at).toLocaleString()}
                       </p>
                     </div>
                   </div>
-                  <span className="text-sm font-mono text-gray-400">{log.response_time_ms}ms</span>
+                  <span className="text-sm font-mono text-gray-400 dark:text-gray-500">{log.response_time_ms}ms</span>
                 </div>
               </div>
             ))}
@@ -176,26 +191,26 @@ export default function EndpointDetails() {
         </div>
       </div>
 
-      <div className="mt-8 bg-white shadow-lg rounded-2xl p-6 border-l-4 border-indigo-600">
-        <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-          <Settings className="text-gray-600" size={20} /> Notification Settings
+      <div className="mt-8 bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-6 border-l-4 border-indigo-600 dark:border-indigo-400 transition-colors duration-200">
+        <h2 className="text-xl font-bold mb-4 flex items-center gap-2 dark:text-white">
+          <Settings className="text-gray-600 dark:text-gray-400" size={20} /> Notification Settings
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">Slack Webhook URL</label>
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Slack Webhook URL</label>
             <input
               type="url"
-              className="w-full border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-indigo-500 outline-none"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-xl p-3 focus:ring-2 focus:ring-indigo-500 outline-none dark:bg-gray-700 dark:text-white"
               value={editData.slack_webhook_url}
               onChange={(e) => setEditData({ ...editData, slack_webhook_url: e.target.value })}
               placeholder="https://hooks.slack.com/services/..."
             />
           </div>
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">Alert Email</label>
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Alert Email</label>
             <input
               type="email"
-              className="w-full border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-indigo-500 outline-none"
+              className="w-full border border-gray-300 dark:border-gray-600 rounded-xl p-3 focus:ring-2 focus:ring-indigo-500 outline-none dark:bg-gray-700 dark:text-white"
               value={editData.alert_email}
               onChange={(e) => setEditData({ ...editData, alert_email: e.target.value })}
               placeholder="alerts@example.com"
@@ -206,13 +221,13 @@ export default function EndpointDetails() {
           <button
             onClick={handleUpdate}
             disabled={updating}
-            className="bg-indigo-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-indigo-700 shadow-lg flex items-center gap-2 disabled:opacity-50"
+            className="bg-indigo-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-indigo-700 shadow-lg flex items-center gap-2 disabled:opacity-50 dark:bg-indigo-500 dark:hover:bg-indigo-600"
           >
             {updating ? <RefreshCw className="animate-spin" size={20} /> : <Save size={20} />}
             Save Changes
           </button>
         </div>
-        <p className="mt-4 text-sm text-gray-500 italic">
+        <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 italic">
           We will notify these channels whenever the status of this API changes.
         </p>
       </div>
