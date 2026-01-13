@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { endpointAPI } from "../services/api";
-import { Activity, Plus, Trash2, ExternalLink, RefreshCw } from "lucide-react";
+import { Activity, Plus, Trash2, ExternalLink, RefreshCw, BarChart2 } from "lucide-react";
 
 export default function Dashboard() {
   const [endpoints, setEndpoints] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
   const [newEndpoint, setNewEndpoint] = useState({ name: "", url: "", method: "GET", interval: 60 });
+  const navigate = useNavigate();
 
   const fetchEndpoints = async () => {
     try {
@@ -21,7 +23,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchEndpoints();
-    const interval = setInterval(fetchEndpoints, 30000); // Auto refresh every 30s
+    const interval = setInterval(fetchEndpoints, 30000);
     return () => clearInterval(interval);
   }, []);
 
@@ -37,7 +39,8 @@ export default function Dashboard() {
     }
   };
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (e, id) => {
+    e.stopPropagation();
     if (window.confirm("Are you sure?")) {
       await endpointAPI.delete(id);
       fetchEndpoints();
@@ -52,7 +55,7 @@ export default function Dashboard() {
         </h1>
         <button
           onClick={() => setShowAddModal(true)}
-          className="bg-indigo-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-indigo-700 transition"
+          className="bg-indigo-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-indigo-700 transition shadow-lg"
         >
           <Plus size={20} /> Add Endpoint
         </button>
@@ -64,68 +67,74 @@ export default function Dashboard() {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {endpoints.map((ep) => (
-            <div key={ep.id} className="bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition">
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <h3 className="font-bold text-xl text-gray-800">{ep.name}</h3>
-                  <p className="text-sm text-gray-500 truncate max-w-[200px]">{ep.url}</p>
+          {endpoints.map((ep) => {
+            const endpointId = ep._id || ep.id;
+            return (
+              <div 
+                key={endpointId} 
+                onClick={() => navigate(`/endpoint/${endpointId}`)}
+                className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:border-indigo-100 transition cursor-pointer group"
+              >
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="font-bold text-xl text-gray-800 group-hover:text-indigo-600 transition">{ep.name}</h3>
+                    <p className="text-sm text-gray-500 truncate max-w-[200px]">{ep.url}</p>
+                  </div>
+                  <span className={`px-3 py-1 rounded-full text-xs font-bold ${ep.is_active ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}`}>
+                    {ep.is_active ? "UP" : "DOWN"}
+                  </span>
                 </div>
-                <span className={`px-2 py-1 rounded text-xs font-bold ${ep.is_active ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"}`}>
-                  {ep.is_active ? "ACTIVE" : "INACTIVE"}
-                </span>
+                
+                <div className="flex items-center justify-between mt-8">
+                  <div className="flex gap-2">
+                    <span className="text-xs bg-gray-50 px-2 py-1 rounded border text-gray-600 font-mono">{ep.method}</span>
+                    <span className="text-xs bg-gray-50 px-2 py-1 rounded border text-gray-600">{ep.interval}s</span>
+                  </div>
+                  <div className="flex gap-4">
+                     <BarChart2 className="text-gray-400 group-hover:text-indigo-500" size={20} />
+                    <button onClick={(e) => handleDelete(e, endpointId)} className="text-gray-400 hover:text-red-600 transition">
+                      <Trash2 size={20} />
+                    </button>
+                  </div>
+                </div>
               </div>
-              
-              <div className="flex items-center justify-between mt-6">
-                <div className="flex gap-2">
-                  <span className="text-xs bg-gray-100 px-2 py-1 rounded text-gray-600 font-mono">{ep.method}</span>
-                  <span className="text-xs bg-gray-100 px-2 py-1 rounded text-gray-600">{ep.interval}s</span>
-                </div>
-                <div className="flex gap-3">
-                  <button onClick={() => handleDelete(ep.id)} className="text-red-500 hover:text-red-700">
-                    <Trash2 size={18} />
-                  </button>
-                  <a href={ep.url} target="_blank" rel="noreferrer" className="text-blue-500 hover:text-blue-700">
-                    <ExternalLink size={18} />
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
 
-      {/* Add Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-xl p-8 max-w-md w-full">
-            <h2 className="text-2xl font-bold mb-6">Add New Endpoint</h2>
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl">
+            <h2 className="text-2xl font-bold mb-6">Monitor New API</h2>
             <form onSubmit={handleAddEndpoint} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700">Name</label>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">Display Name</label>
                 <input
                   type="text"
                   required
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                  className="w-full border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-indigo-500 outline-none"
                   value={newEndpoint.name}
                   onChange={(e) => setNewEndpoint({ ...newEndpoint, name: e.target.value })}
+                  placeholder="e.g. Production API"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">URL</label>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">Target URL</label>
                 <input
                   type="url"
                   required
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                  className="w-full border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-indigo-500 outline-none"
                   value={newEndpoint.url}
                   onChange={(e) => setNewEndpoint({ ...newEndpoint, url: e.target.value })}
+                  placeholder="https://api.example.com/health"
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Method</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1">HTTP Method</label>
                   <select
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    className="w-full border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-indigo-500 outline-none"
                     value={newEndpoint.method}
                     onChange={(e) => setNewEndpoint({ ...newEndpoint, method: e.target.value })}
                   >
@@ -136,19 +145,19 @@ export default function Dashboard() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Interval (s)</label>
+                  <label className="block text-sm font-semibold text-gray-700 mb-1">Interval (s)</label>
                   <input
                     type="number"
                     min="10"
-                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                    className="w-full border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-indigo-500 outline-none"
                     value={newEndpoint.interval}
                     onChange={(e) => setNewEndpoint({ ...newEndpoint, interval: parseInt(e.target.value) })}
                   />
                 </div>
               </div>
-              <div className="flex justify-end gap-4 mt-8">
-                <button type="button" onClick={() => setShowAddModal(false)} className="px-4 py-2 text-gray-600">Cancel</button>
-                <button type="submit" className="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700">Save</button>
+              <div className="flex justify-end gap-3 mt-8">
+                <button type="button" onClick={() => setShowAddModal(false)} className="px-6 py-2 text-gray-500 font-medium">Cancel</button>
+                <button type="submit" className="bg-indigo-600 text-white px-8 py-2 rounded-xl font-bold hover:bg-indigo-700 shadow-lg shadow-indigo-200">Start Monitoring</button>
               </div>
             </form>
           </div>

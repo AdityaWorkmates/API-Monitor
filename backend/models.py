@@ -1,5 +1,5 @@
 from motor.motor_asyncio import AsyncIOMotorClient
-from pydantic import BaseModel, Field, BeforeValidator, EmailStr
+from pydantic import BaseModel, Field, BeforeValidator, EmailStr, ConfigDict, computed_field
 from typing import Optional, Annotated, Dict, Any, List
 from datetime import datetime
 from config import settings
@@ -52,14 +52,20 @@ class EndpointUpdate(BaseModel):
     body: Optional[Dict[str, Any]] = None
 
 class EndpointResponse(EndpointBase):
-    id: Optional[PyObjectId] = Field(alias="_id", default=None)
+    id: PyObjectId = Field(validation_alias="_id")
     owner_email: Optional[str] = None
     created_at: datetime = Field(default_factory=datetime.utcnow)
     last_checked: Optional[datetime] = None
 
-    class Config:
-        populate_by_name = True
-        arbitrary_types_allowed = True
+    @computed_field
+    @property
+    def _id(self) -> str:
+        return self.id
+
+    model_config = ConfigDict(
+        populate_by_name=True,
+        arbitrary_types_allowed=True,
+    )
 
 # Monitoring Logs
 class MonitoringLogBase(BaseModel):
@@ -71,8 +77,14 @@ class MonitoringLogBase(BaseModel):
     checked_at: datetime = Field(default_factory=datetime.utcnow)
 
 class MonitoringLogResponse(MonitoringLogBase):
-    id: Optional[PyObjectId] = Field(alias="_id", default=None)
+    id: PyObjectId = Field(validation_alias="_id")
 
-    class Config:
-        populate_by_name = True
-        arbitrary_types_allowed = True
+    @computed_field
+    @property
+    def _id(self) -> str:
+        return self.id
+
+    model_config = ConfigDict(
+        populate_by_name=True,
+        arbitrary_types_allowed=True,
+    )

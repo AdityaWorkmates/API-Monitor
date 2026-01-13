@@ -1,0 +1,294 @@
+INFO:     Will watch for changes in these directories: ['C:\\API-Monitor\\backend']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [7400] using StatReload
+INFO:     Started server process [25900]
+INFO:     Waiting for application startup.
+2026-01-13 18:20:13,856 - main - INFO - Starting up API Monitor...
+2026-01-13 18:20:13,857 - apscheduler.scheduler - INFO - Scheduler started
+2026-01-13 18:20:13,858 - apscheduler.scheduler - INFO - Added job "cleanup_logs" to job store "default"
+2026-01-13 18:20:13,859 - apscheduler.scheduler - INFO - Added job "cleanup_logs" to job store "default"
+2026-01-13 18:20:13,879 - apscheduler.scheduler - INFO - Added job "perform_check" to job store "default"
+2026-01-13 18:20:13,880 - apscheduler.scheduler - INFO - Added job "perform_check" to job store "default"
+2026-01-13 18:20:13,880 - apscheduler.scheduler - INFO - Added job "perform_check" to job store "default"
+2026-01-13 18:20:13,881 - apscheduler.scheduler - INFO - Added job "perform_check" to job store "default"
+INFO:     Application startup complete.
+2026-01-13 18:21:13,892 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:22:13 IST)" (scheduled at 2026-01-13 18:21:13.879009+05:30)
+2026-01-13 18:21:13,929 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:22:13 IST)" (scheduled at 2026-01-13 18:21:13.880007+05:30)
+2026-01-13 18:21:13,931 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:22:13 IST)" (scheduled at 2026-01-13 18:21:13.880007+05:30)
+2026-01-13 18:21:13,931 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:22:13 IST)" (scheduled at 2026-01-13 18:21:13.880007+05:30)
+2026-01-13 18:21:16,841 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:21:16,850 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:22:13 IST)" executed successfully
+2026-01-13 18:21:17,209 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:21:17,212 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:21:17,215 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:22:13 IST)" executed successfully
+2026-01-13 18:21:17,216 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:22:13 IST)" executed successfully
+2026-01-13 18:21:17,240 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:21:17,244 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:22:13 IST)" executed successfully
+2026-01-13 18:22:13,890 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:23:13 IST)" (scheduled at 2026-01-13 18:22:13.879009+05:30)
+2026-01-13 18:22:13,893 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:23:13 IST)" (scheduled at 2026-01-13 18:22:13.880007+05:30)
+2026-01-13 18:22:13,894 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:23:13 IST)" (scheduled at 2026-01-13 18:22:13.880007+05:30)
+2026-01-13 18:22:13,894 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:23:13 IST)" (scheduled at 2026-01-13 18:22:13.880007+05:30)
+2026-01-13 18:22:16,951 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:22:16,961 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:23:13 IST)" executed successfully
+2026-01-13 18:22:17,276 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:22:17,280 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:23:13 IST)" executed successfully
+2026-01-13 18:22:17,292 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:22:17,297 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:22:17,299 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:23:13 IST)" executed successfully
+2026-01-13 18:22:17,304 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:23:13 IST)" executed successfully
+2026-01-13 18:23:13,896 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:24:13 IST)" (scheduled at 2026-01-13 18:23:13.879009+05:30)
+2026-01-13 18:23:13,899 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:24:13 IST)" (scheduled at 2026-01-13 18:23:13.880007+05:30)
+2026-01-13 18:23:13,900 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:24:13 IST)" (scheduled at 2026-01-13 18:23:13.880007+05:30)
+2026-01-13 18:23:13,900 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:24:13 IST)" (scheduled at 2026-01-13 18:23:13.880007+05:30)
+2026-01-13 18:23:16,682 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:23:16,686 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:24:13 IST)" executed successfully
+2026-01-13 18:23:17,068 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:23:17,070 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:23:17,075 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:24:13 IST)" executed successfully
+2026-01-13 18:23:17,076 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:23:17,078 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:24:13 IST)" executed successfully
+2026-01-13 18:23:17,080 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:24:13 IST)" executed successfully
+2026-01-13 18:24:13,886 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:25:13 IST)" (scheduled at 2026-01-13 18:24:13.879009+05:30)
+2026-01-13 18:24:13,923 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:25:13 IST)" (scheduled at 2026-01-13 18:24:13.880007+05:30)
+2026-01-13 18:24:13,924 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:25:13 IST)" (scheduled at 2026-01-13 18:24:13.880007+05:30)
+2026-01-13 18:24:13,925 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:25:13 IST)" (scheduled at 2026-01-13 18:24:13.880007+05:30)
+2026-01-13 18:24:16,784 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:24:16,798 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:25:13 IST)" executed successfully
+2026-01-13 18:24:17,129 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:24:17,136 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:25:13 IST)" executed successfully
+2026-01-13 18:24:17,147 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:24:17,152 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:25:13 IST)" executed successfully
+2026-01-13 18:24:17,153 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:24:17,157 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:25:13 IST)" executed successfully
+2026-01-13 18:25:13,894 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:26:13 IST)" (scheduled at 2026-01-13 18:25:13.879009+05:30)
+2026-01-13 18:25:13,895 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:26:13 IST)" (scheduled at 2026-01-13 18:25:13.880007+05:30)
+2026-01-13 18:25:13,896 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:26:13 IST)" (scheduled at 2026-01-13 18:25:13.880007+05:30)
+2026-01-13 18:25:13,896 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:26:13 IST)" (scheduled at 2026-01-13 18:25:13.880007+05:30)
+2026-01-13 18:25:15,711 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:25:15,716 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:26:13 IST)" executed successfully
+2026-01-13 18:25:16,099 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:25:16,102 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:25:16,106 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:26:13 IST)" executed successfully
+2026-01-13 18:25:16,106 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:26:13 IST)" executed successfully
+2026-01-13 18:25:16,108 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:25:16,111 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:26:13 IST)" executed successfully
+2026-01-13 18:26:13,890 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:27:13 IST)" (scheduled at 2026-01-13 18:26:13.879009+05:30)
+2026-01-13 18:26:13,910 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:27:13 IST)" (scheduled at 2026-01-13 18:26:13.880007+05:30)
+2026-01-13 18:26:13,910 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:27:13 IST)" (scheduled at 2026-01-13 18:26:13.880007+05:30)
+2026-01-13 18:26:13,911 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:27:13 IST)" (scheduled at 2026-01-13 18:26:13.880007+05:30)
+2026-01-13 18:26:15,955 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:26:15,964 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:27:13 IST)" executed successfully
+2026-01-13 18:26:16,246 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:26:16,251 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:27:13 IST)" executed successfully
+2026-01-13 18:26:16,260 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:26:16,262 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:26:16,266 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:27:13 IST)" executed successfully
+2026-01-13 18:26:16,267 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:27:13 IST)" executed successfully
+2026-01-13 18:27:13,889 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:28:13 IST)" (scheduled at 2026-01-13 18:27:13.879009+05:30)
+2026-01-13 18:27:13,891 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:28:13 IST)" (scheduled at 2026-01-13 18:27:13.880007+05:30)
+2026-01-13 18:27:13,892 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:28:13 IST)" (scheduled at 2026-01-13 18:27:13.880007+05:30)
+2026-01-13 18:27:13,894 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:28:13 IST)" (scheduled at 2026-01-13 18:27:13.880007+05:30)
+2026-01-13 18:27:17,142 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:27:17,152 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:28:13 IST)" executed successfully
+2026-01-13 18:27:17,451 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:27:17,455 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:28:13 IST)" executed successfully
+2026-01-13 18:27:17,533 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:27:17,537 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:28:13 IST)" executed successfully
+2026-01-13 18:27:17,976 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:27:17,981 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:28:13 IST)" executed successfully
+2026-01-13 18:28:13,899 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:29:13 IST)" (scheduled at 2026-01-13 18:28:13.879009+05:30)
+2026-01-13 18:28:13,900 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:29:13 IST)" (scheduled at 2026-01-13 18:28:13.880007+05:30)
+2026-01-13 18:28:13,901 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:29:13 IST)" (scheduled at 2026-01-13 18:28:13.880007+05:30)
+2026-01-13 18:28:13,901 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:29:13 IST)" (scheduled at 2026-01-13 18:28:13.880007+05:30)
+2026-01-13 18:28:17,107 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:28:17,117 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:29:13 IST)" executed successfully
+2026-01-13 18:28:17,516 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:28:17,523 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:29:13 IST)" executed successfully
+2026-01-13 18:28:17,526 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:28:17,530 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:29:13 IST)" executed successfully
+2026-01-13 18:28:17,563 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:28:17,567 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:29:13 IST)" executed successfully
+2026-01-13 18:29:13,882 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:30:13 IST)" (scheduled at 2026-01-13 18:29:13.879009+05:30)
+2026-01-13 18:29:13,883 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:30:13 IST)" (scheduled at 2026-01-13 18:29:13.880007+05:30)
+2026-01-13 18:29:13,883 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:30:13 IST)" (scheduled at 2026-01-13 18:29:13.880007+05:30)
+2026-01-13 18:29:13,884 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:30:13 IST)" (scheduled at 2026-01-13 18:29:13.880007+05:30)
+2026-01-13 18:29:17,006 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:29:17,020 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:30:13 IST)" executed successfully
+2026-01-13 18:29:17,358 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:29:17,363 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:30:13 IST)" executed successfully
+2026-01-13 18:29:17,370 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:29:17,374 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:29:17,376 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:30:13 IST)" executed successfully
+2026-01-13 18:29:17,380 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:30:13 IST)" executed successfully
+2026-01-13 18:30:13,891 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:31:13 IST)" (scheduled at 2026-01-13 18:30:13.879009+05:30)
+2026-01-13 18:30:13,892 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:31:13 IST)" (scheduled at 2026-01-13 18:30:13.880007+05:30)
+2026-01-13 18:30:13,893 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:31:13 IST)" (scheduled at 2026-01-13 18:30:13.880007+05:30)
+2026-01-13 18:30:13,895 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:31:13 IST)" (scheduled at 2026-01-13 18:30:13.880007+05:30)
+2026-01-13 18:30:23,904 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:30:23,965 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:31:13 IST)" executed successfully
+2026-01-13 18:30:24,343 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:30:24,385 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:30:24,399 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:31:13 IST)" executed successfully
+2026-01-13 18:30:24,402 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:31:13 IST)" executed successfully
+2026-01-13 18:30:24,670 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:30:24,729 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:31:13 IST)" executed successfully
+2026-01-13 18:31:13,898 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:32:13 IST)" (scheduled at 2026-01-13 18:31:13.879009+05:30)
+2026-01-13 18:31:13,902 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:32:13 IST)" (scheduled at 2026-01-13 18:31:13.880007+05:30)
+2026-01-13 18:31:13,903 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:32:13 IST)" (scheduled at 2026-01-13 18:31:13.880007+05:30)
+2026-01-13 18:31:13,904 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:32:13 IST)" (scheduled at 2026-01-13 18:31:13.880007+05:30)
+2026-01-13 18:31:24,130 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:31:24,135 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:31:24,140 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:31:24,143 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:31:24,166 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:32:13 IST)" executed successfully
+2026-01-13 18:31:24,169 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:32:13 IST)" executed successfully
+2026-01-13 18:31:24,170 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:32:13 IST)" executed successfully
+2026-01-13 18:31:24,174 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:32:13 IST)" executed successfully
+2026-01-13 18:32:01,075 - apscheduler.scheduler - INFO - Added job "perform_check" to job store "default"
+2026-01-13 18:32:11,076 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:32:21 IST)" (scheduled at 2026-01-13 18:32:11.075186+05:30)
+2026-01-13 18:32:12,960 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:32:13,005 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:32:21 IST)" executed successfully
+2026-01-13 18:32:13,889 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:33:13 IST)" (scheduled at 2026-01-13 18:32:13.879009+05:30)
+2026-01-13 18:32:13,890 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:33:13 IST)" (scheduled at 2026-01-13 18:32:13.880007+05:30)
+2026-01-13 18:32:13,891 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:33:13 IST)" (scheduled at 2026-01-13 18:32:13.880007+05:30)
+2026-01-13 18:32:13,892 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:33:13 IST)" (scheduled at 2026-01-13 18:32:13.880007+05:30)
+2026-01-13 18:32:20,887 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:33:13 IST)" executed successfully
+2026-01-13 18:32:21,022 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:32:21,035 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:33:13 IST)" executed successfully
+2026-01-13 18:32:21,080 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:32:31 IST)" (scheduled at 2026-01-13 18:32:21.075186+05:30)
+2026-01-13 18:32:22,603 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:32:22,646 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:32:22,662 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:33:13 IST)" executed successfully
+2026-01-13 18:32:22,664 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:33:13 IST)" executed successfully
+2026-01-13 18:32:22,733 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:32:22,743 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:32:31 IST)" executed successfully
+2026-01-13 18:32:31,092 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:32:41 IST)" (scheduled at 2026-01-13 18:32:31.075186+05:30)
+2026-01-13 18:32:33,023 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:32:33,045 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:32:41 IST)" executed successfully
+2026-01-13 18:32:41,077 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:32:51 IST)" (scheduled at 2026-01-13 18:32:41.075186+05:30)
+2026-01-13 18:32:43,163 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:32:43,222 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:32:51 IST)" executed successfully
+2026-01-13 18:32:51,080 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:33:01 IST)" (scheduled at 2026-01-13 18:32:51.075186+05:30)
+2026-01-13 18:32:52,999 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:32:53,016 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:33:01 IST)" executed successfully
+2026-01-13 18:33:01,077 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:33:11 IST)" (scheduled at 2026-01-13 18:33:01.075186+05:30)
+2026-01-13 18:33:02,046 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:33:02,088 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:33:11 IST)" executed successfully
+2026-01-13 18:33:11,080 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:33:21 IST)" (scheduled at 2026-01-13 18:33:11.075186+05:30)
+2026-01-13 18:33:12,184 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:33:12,229 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:33:21 IST)" executed successfully
+2026-01-13 18:33:13,889 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:34:13 IST)" (scheduled at 2026-01-13 18:33:13.879009+05:30)
+2026-01-13 18:33:13,925 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:34:13 IST)" (scheduled at 2026-01-13 18:33:13.880007+05:30)
+2026-01-13 18:33:13,926 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:34:13 IST)" (scheduled at 2026-01-13 18:33:13.880007+05:30)
+2026-01-13 18:33:13,927 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:34:13 IST)" (scheduled at 2026-01-13 18:33:13.880007+05:30)
+2026-01-13 18:33:18,454 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:33:18,537 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:34:13 IST)" executed successfully
+2026-01-13 18:33:18,886 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:33:18,927 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:33:18,929 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:33:18,936 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:34:13 IST)" executed successfully
+2026-01-13 18:33:18,937 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:34:13 IST)" executed successfully
+2026-01-13 18:33:18,938 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:34:13 IST)" executed successfully
+2026-01-13 18:33:21,079 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:33:31 IST)" (scheduled at 2026-01-13 18:33:21.075186+05:30)
+2026-01-13 18:33:22,272 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:33:22,284 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:33:31 IST)" executed successfully
+2026-01-13 18:33:31,087 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:33:41 IST)" (scheduled at 2026-01-13 18:33:31.075186+05:30)
+2026-01-13 18:33:31,913 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:33:31,956 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:33:41 IST)" executed successfully
+2026-01-13 18:33:41,076 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:33:51 IST)" (scheduled at 2026-01-13 18:33:41.075186+05:30)
+2026-01-13 18:33:41,966 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:33:42,008 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:33:51 IST)" executed successfully
+2026-01-13 18:33:51,076 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:34:01 IST)" (scheduled at 2026-01-13 18:33:51.075186+05:30)
+2026-01-13 18:33:51,973 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:33:52,014 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:34:01 IST)" executed successfully
+2026-01-13 18:34:01,081 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:34:11 IST)" (scheduled at 2026-01-13 18:34:01.075186+05:30)
+2026-01-13 18:34:01,955 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:34:01,997 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:34:11 IST)" executed successfully
+2026-01-13 18:34:11,086 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:34:21 IST)" (scheduled at 2026-01-13 18:34:11.075186+05:30)
+2026-01-13 18:34:11,971 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:34:12,011 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:34:21 IST)" executed successfully
+2026-01-13 18:34:13,884 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:35:13 IST)" (scheduled at 2026-01-13 18:34:13.879009+05:30)
+2026-01-13 18:34:13,922 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:35:13 IST)" (scheduled at 2026-01-13 18:34:13.880007+05:30)
+2026-01-13 18:34:13,923 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:35:13 IST)" (scheduled at 2026-01-13 18:34:13.880007+05:30)
+2026-01-13 18:34:13,924 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:35:13 IST)" (scheduled at 2026-01-13 18:34:13.880007+05:30)
+2026-01-13 18:34:17,215 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:34:17,281 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:35:13 IST)" executed successfully
+2026-01-13 18:34:17,628 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:34:17,668 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:34:17,670 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:34:17,674 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:35:13 IST)" executed successfully
+2026-01-13 18:34:17,677 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:35:13 IST)" executed successfully
+2026-01-13 18:34:17,677 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:35:13 IST)" executed successfully
+2026-01-13 18:34:21,078 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:34:31 IST)" (scheduled at 2026-01-13 18:34:21.075186+05:30)
+2026-01-13 18:34:21,972 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:34:22,015 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:34:31 IST)" executed successfully
+2026-01-13 18:34:31,092 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:34:41 IST)" (scheduled at 2026-01-13 18:34:31.075186+05:30)
+2026-01-13 18:34:32,073 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:34:32,117 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:34:41 IST)" executed successfully
+2026-01-13 18:34:41,080 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:34:51 IST)" (scheduled at 2026-01-13 18:34:41.075186+05:30)
+2026-01-13 18:34:41,977 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:34:42,018 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:34:51 IST)" executed successfully
+2026-01-13 18:34:51,082 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:35:01 IST)" (scheduled at 2026-01-13 18:34:51.075186+05:30)
+2026-01-13 18:34:51,995 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:34:52,038 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:35:01 IST)" executed successfully
+2026-01-13 18:35:01,092 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:35:11 IST)" (scheduled at 2026-01-13 18:35:01.075186+05:30)
+2026-01-13 18:35:02,085 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:35:02,127 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:35:11 IST)" executed successfully
+2026-01-13 18:35:11,088 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:35:21 IST)" (scheduled at 2026-01-13 18:35:11.075186+05:30)
+2026-01-13 18:35:13,415 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:35:13,432 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:35:21 IST)" executed successfully
+2026-01-13 18:35:13,889 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:36:13 IST)" (scheduled at 2026-01-13 18:35:13.879009+05:30)
+2026-01-13 18:35:13,927 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:36:13 IST)" (scheduled at 2026-01-13 18:35:13.880007+05:30)
+2026-01-13 18:35:13,929 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:36:13 IST)" (scheduled at 2026-01-13 18:35:13.880007+05:30)
+2026-01-13 18:35:13,932 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:36:13 IST)" (scheduled at 2026-01-13 18:35:13.880007+05:30)
+2026-01-13 18:35:17,908 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:35:17,913 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:36:13 IST)" executed successfully
+2026-01-13 18:35:18,338 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:35:18,377 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:35:18,381 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:35:18,387 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:36:13 IST)" executed successfully
+2026-01-13 18:35:18,388 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:36:13 IST)" executed successfully
+2026-01-13 18:35:18,389 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:36:13 IST)" executed successfully
+2026-01-13 18:35:21,083 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:35:31 IST)" (scheduled at 2026-01-13 18:35:21.075186+05:30)
+2026-01-13 18:35:22,068 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:35:22,110 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:35:31 IST)" executed successfully
+2026-01-13 18:35:31,085 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:35:41 IST)" (scheduled at 2026-01-13 18:35:31.075186+05:30)
+2026-01-13 18:35:32,300 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:35:32,352 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:35:41 IST)" executed successfully
+2026-01-13 18:35:41,090 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:35:51 IST)" (scheduled at 2026-01-13 18:35:41.075186+05:30)
+2026-01-13 18:35:42,579 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:35:42,589 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:35:51 IST)" executed successfully
+2026-01-13 18:35:51,075 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:36:01 IST)" (scheduled at 2026-01-13 18:35:51.075186+05:30)
+2026-01-13 18:35:51,979 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:35:52,021 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:36:01 IST)" executed successfully
+2026-01-13 18:36:01,085 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:36:11 IST)" (scheduled at 2026-01-13 18:36:01.075186+05:30)
+2026-01-13 18:36:02,014 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:36:02,056 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:36:11 IST)" executed successfully
+2026-01-13 18:36:11,076 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:36:21 IST)" (scheduled at 2026-01-13 18:36:11.075186+05:30)
+2026-01-13 18:36:13,106 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:36:13,114 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:36:21 IST)" executed successfully
+2026-01-13 18:36:13,881 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:37:13 IST)" (scheduled at 2026-01-13 18:36:13.879009+05:30)
+2026-01-13 18:36:13,918 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:37:13 IST)" (scheduled at 2026-01-13 18:36:13.880007+05:30)
+2026-01-13 18:36:14,004 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:37:13 IST)" (scheduled at 2026-01-13 18:36:13.880007+05:30)
+2026-01-13 18:36:14,007 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:37:13 IST)" (scheduled at 2026-01-13 18:36:13.880007+05:30)
+2026-01-13 18:36:17,972 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:36:18,024 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:37:13 IST)" executed successfully
+2026-01-13 18:36:18,444 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:36:18,482 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:36:18,485 - httpx - INFO - HTTP Request: GET https://google.com "HTTP/1.1 301 Moved Permanently"
+2026-01-13 18:36:18,536 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:37:13 IST)" executed successfully
+2026-01-13 18:36:18,537 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:37:13 IST)" executed successfully
+2026-01-13 18:36:18,539 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:01:00], next run at: 2026-01-13 18:37:13 IST)" executed successfully
+2026-01-13 18:36:21,083 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:36:31 IST)" (scheduled at 2026-01-13 18:36:21.075186+05:30)
+2026-01-13 18:36:22,953 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:36:22,999 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:36:31 IST)" executed successfully
+2026-01-13 18:36:31,090 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:36:41 IST)" (scheduled at 2026-01-13 18:36:31.075186+05:30)
+2026-01-13 18:36:31,977 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:36:32,019 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:36:41 IST)" executed successfully
+2026-01-13 18:36:41,086 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:36:51 IST)" (scheduled at 2026-01-13 18:36:41.075186+05:30)
+2026-01-13 18:36:42,367 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:36:42,416 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:36:51 IST)" executed successfully
+2026-01-13 18:36:51,083 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:37:01 IST)" (scheduled at 2026-01-13 18:36:51.075186+05:30)
+2026-01-13 18:36:51,990 - httpx - INFO - HTTP Request: GET https://chatgpt.com/ "HTTP/1.1 403 Forbidden"
+2026-01-13 18:36:52,033 - apscheduler.executors.default - INFO - Job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:37:01 IST)" executed successfully
+2026-01-13 18:37:01,087 - apscheduler.executors.default - INFO - Running job "perform_check (trigger: interval[0:00:10], next run at: 2026-01-13 18:37:11 IST)" (scheduled at 2026-01-13 18:37:01.075186+05:30)

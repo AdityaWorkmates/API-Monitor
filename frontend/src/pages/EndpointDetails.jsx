@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { endpointAPI } from "../services/api";
 import { Line } from "react-chartjs-2";
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from "chart.js";
 import { ArrowLeft, Clock, CheckCircle, XCircle, RefreshCw } from "lucide-react";
 import { format } from "date-fns";
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
 
 export default function EndpointDetails() {
   const { id } = useParams();
@@ -151,3 +151,4 @@ export default function EndpointDetails() {
     </div>
   );
 }
+
