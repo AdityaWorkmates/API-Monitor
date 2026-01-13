@@ -88,10 +88,10 @@ async def delete_endpoint(id: str, user_email: str = Depends(get_current_user_em
     await EndpointService.delete_endpoint(id, user_email)
 
 # --- Stats Routes ---
-@router.get("/stats/logs/{endpoint_id}", response_model=List[MonitoringLogResponse], tags=["Stats"])
+@router.get("/logs/{endpoint_id}", response_model=List[MonitoringLogResponse], tags=["Stats"])
 async def get_logs(endpoint_id: str, limit: int = 50):
     return await EndpointService.get_logs(endpoint_id, limit)
 
-@router.get("/stats/stats/{endpoint_id}", tags=["Stats"])
+@router.get("/stats/{endpoint_id}", tags=["Stats"])
 async def get_stats(endpoint_id: str):
     return await EndpointService.get_stats(endpoint_id)
