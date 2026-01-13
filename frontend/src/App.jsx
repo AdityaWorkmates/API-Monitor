@@ -1,22 +1,30 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from './components/Layout';
-import Dashboard from './pages/Dashboard';
-import EndpointList from './pages/EndpointList';
-import EndpointDetails from './pages/EndpointDetails';
-import AddEndpoint from './pages/AddEndpoint';
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Dashboard from "./pages/Dashboard";
+
+const PrivateRoute = ({ children }) => {
+  const token = localStorage.getItem("token");
+  return token ? children : <Navigate to="/login" />;
+};
 
 function App() {
   return (
     <Router>
-      <Layout>
+      <div className="min-h-screen bg-gray-50">
         <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/endpoints" element={<EndpointList />} />
-          <Route path="/endpoints/new" element={<AddEndpoint />} />
-          <Route path="/endpoints/:id" element={<EndpointDetails />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
         </Routes>
-      </Layout>
+      </div>
     </Router>
   );
 }
