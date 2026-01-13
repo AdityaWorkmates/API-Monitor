@@ -65,12 +65,14 @@ export default function EndpointDetails() {
   if (!endpoint) return <div className="p-8 text-center">Endpoint not found</div>;
 
   const chartLogs = [...logs].reverse();
+  const filteredChartLogs = chartLogs.filter(log => log.success && log.response_time_ms > 0);
+  
   const chartData = {
-    labels: chartLogs.map((log) => format(new Date(log.checked_at), "HH:mm:ss")),
+    labels: filteredChartLogs.map((log) => format(new Date(log.checked_at), "HH:mm:ss")),
     datasets: [
       {
         label: "Response Time (ms)",
-        data: chartLogs.map((log) => log.response_time_ms),
+        data: filteredChartLogs.map((log) => log.response_time_ms),
         borderColor: "rgb(79, 70, 229)",
         backgroundColor: "rgba(79, 70, 229, 0.5)",
         tension: 0.2,
@@ -94,9 +96,15 @@ export default function EndpointDetails() {
               <h1 className="text-3xl font-bold">{endpoint.name}</h1>
               <p className="opacity-80 mt-1">{endpoint.url}</p>
             </div>
-            <div className={`px-4 py-2 rounded-full font-bold border-2 ${endpoint.is_active ? "bg-green-500/20 border-green-400" : "bg-red-500/20 border-red-400"}`}>
-              {endpoint.is_active ? "SYSTEMS ACTIVE" : "SYSTEMS DOWN"}
-            </div>
+            {endpoint.last_status_success === null ? (
+               <div className="px-4 py-2 rounded-full font-bold border-2 bg-blue-500/20 border-blue-400">
+                  WAITING FOR FIRST CHECK
+               </div>
+            ) : (
+              <div className={`px-4 py-2 rounded-full font-bold border-2 ${endpoint.last_status_success ? "bg-green-500/20 border-green-400" : "bg-red-500/20 border-red-400"}`}>
+                {endpoint.last_status_success ? "SYSTEMS ACTIVE" : "SYSTEMS DOWN"}
+              </div>
+            )}
           </div>
         </div>
         

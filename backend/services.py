@@ -85,20 +85,49 @@ async def send_email_notification(to_email: str, endpoint_name: str, url: str, s
     if not settings.SMTP_USER or not settings.SMTP_PASSWORD or not to_email:
         return
 
-    status_text = "UP" if success else "DOWN"
-    subject = f"API Status Change: {endpoint_name} is {status_text}"
+    status_text = "RECOVERED" if success else "CRITICAL"
+    status_color = "#10b981" if success else "#ef4444"
+    subject = f"[{status_text}] API Status Alert: {endpoint_name}"
     
     body = f"""
-    <h3>API Status Alert</h3>
-    <p>The status of your monitored API has changed.</p>
-    <ul>
-        <li><b>Endpoint:</b> {endpoint_name}</li>
-        <li><b>URL:</b> {url}</li>
-        <li><b>New Status:</b> <span style="color: {'green' if success else 'red'}">{status_text}</span></li>
-        <li><b>Status Code:</b> {status_code if status_code else 'N/A'}</li>
-        <li><b>Error:</b> {error if error else 'None'}</li>
-        <li><b>Checked At:</b> {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC</li>
-    </ul>
+    <html>
+    <body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7fa; margin: 0; padding: 40px;">
+        <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; shadow: 0 4px 6px rgba(0,0,0,0.1); border: 1px solid #e5e7eb;">
+            <div style="background-color: {status_color}; padding: 30px; text-align: center;">
+                <h1 style="color: #ffffff; margin: 0; font-size: 24px; text-transform: uppercase; letter-spacing: 2px;">API {status_text}</h1>
+            </div>
+            <div style="padding: 40px;">
+                <p style="font-size: 16px; color: #4b5563; margin-top: 0;">Hello,</p>
+                <p style="font-size: 16px; color: #4b5563;">The status of your monitored endpoint <strong>{endpoint_name}</strong> has changed to <span style="color: {status_color}; font-weight: bold;">{status_text}</span>.</p>
+                
+                <div style="background-color: #f9fafb; border-radius: 12px; padding: 25px; margin: 30px 0; border: 1px solid #f3f4f6;">
+                    <div style="margin-bottom: 15px;">
+                        <span style="font-size: 12px; color: #9ca3af; text-transform: uppercase; font-weight: bold; display: block;">Target URL</span>
+                        <a href="{url}" style="font-size: 15px; color: #4f46e5; text-decoration: none; word-break: break-all;">{url}</a>
+                    </div>
+                    <div style="grid-template-cols: 1fr 1fr; display: grid; gap: 20px;">
+                        <div>
+                            <span style="font-size: 12px; color: #9ca3af; text-transform: uppercase; font-weight: bold; display: block;">Status Code</span>
+                            <span style="font-size: 15px; color: #1f2937; font-weight: bold;">{status_code if status_code else 'N/A'}</span>
+                        </div>
+                        <div>
+                            <span style="font-size: 12px; color: #9ca3af; text-transform: uppercase; font-weight: bold; display: block;">Check Time</span>
+                            <span style="font-size: 15px; color: #1f2937;">{datetime.utcnow().strftime('%H:%M:%S')} UTC</span>
+                        </div>
+                    </div>
+                    {f'<div style="margin-top: 15px; border-top: 1px solid #e5e7eb; padding-top: 15px;"><span style="font-size: 12px; color: #ef4444; text-transform: uppercase; font-weight: bold; display: block;">Error Detail</span><span style="font-size: 14px; color: #ef4444; font-family: monospace;">{error}</span></div>' if error else ''}
+                </div>
+
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="http://localhost:5173" style="background-color: #4f46e5; color: #ffffff; padding: 14px 30px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block;">View Dashboard</a>
+                </div>
+            </div>
+            <div style="background-color: #f9fafb; padding: 20px; text-align: center; border-top: 1px solid #e5e7eb;">
+                <p style="font-size: 12px; color: #9ca3af; margin: 0;">API Monitor - Real-time Status Tracking</p>
+            </div>
+        </div>
+    </body>
+    </html>
     """
 
     message = MIMEMultipart()
@@ -113,6 +142,7 @@ async def send_email_notification(to_email: str, endpoint_name: str, url: str, s
                 server.starttls()
                 server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
                 server.send_message(message)
+                print(f"Successfully sent status email to {to_email} for {endpoint_name}")
         except Exception as e:
             print(f"Failed to send email notification: {e}")
 
@@ -147,6 +177,7 @@ async def send_slack_notification(webhook_url: str, endpoint_name: str, url: str
     try:
         async with httpx.AsyncClient() as client:
             await client.post(webhook_url, json=payload)
+            print(f"Successfully sent Slack notification for {endpoint_name}")
     except Exception as e:
         print(f"Failed to send Slack notification: {e}")
 
@@ -166,14 +197,13 @@ async def perform_check(endpoint_id: str):
         body = endpoint.get('body', None)
         slack_webhook = endpoint.get('slack_webhook_url')
         alert_email = endpoint.get('alert_email')
-        last_status_success = endpoint.get('last_status_success') # Previous state
 
         start = time.time()
         error = None
         status_code = None
         success = False
 
-        # Add default browser-like headers if not present
+        # Browser-like headers
         request_headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
         }
@@ -184,7 +214,7 @@ async def perform_check(endpoint_id: str):
             async with httpx.AsyncClient(timeout=timeout, follow_redirects=True) as client:
                 response = await client.request(method, url, headers=request_headers, json=body)
                 status_code = response.status_code
-                success = response.status_code < 400
+                success = 200 <= response.status_code < 300
         except httpx.TimeoutException:
             error = "Timeout"
         except httpx.RequestError as e:
@@ -192,10 +222,11 @@ async def perform_check(endpoint_id: str):
         except Exception as e:
             error = str(e)
 
-        response_time = int((time.time() - start) * 1000)
+        # Failure = 0ms response time for graph cleanliness
+        response_time = int((time.time() - start) * 1000) if success else 0
         checked_at = datetime.utcnow()
 
-        # Log the result
+        # Log current result
         log_entry = {
             "endpoint_id": str(endpoint_id),
             "status_code": status_code,
@@ -206,28 +237,36 @@ async def perform_check(endpoint_id: str):
         }
         await db.monitoring_logs.insert_one(log_entry)
 
-        # Trigger notification if status changed
-        if last_status_success is not None and last_status_success != success:
-            if slack_webhook:
-                await send_slack_notification(
-                    slack_webhook, endpoint['name'], url, success, status_code, error
-                )
-            if alert_email:
-                await send_email_notification(
-                    alert_email, endpoint['name'], url, success, status_code, error
-                )
+        # Threshold Calculation (4 out of last 5)
+        last_logs = await db.monitoring_logs.find(
+            {"endpoint_id": str(endpoint_id)}
+        ).sort("checked_at", -1).limit(5).to_list(5)
+        
+        failure_count = sum(1 for log in last_logs if not log['success'])
+        currently_threshold_down = failure_count >= 4
+        prev_threshold_down = endpoint.get('is_threshold_down', False)
 
-        # Update last_checked and last_status_success in endpoint
+        if currently_threshold_down and not prev_threshold_down:
+            # Transition to DOWN
+            if slack_webhook: await send_slack_notification(slack_webhook, endpoint['name'], url, False, status_code, error)
+            if alert_email: await send_email_notification(alert_email, endpoint['name'], url, False, status_code, error)
+        elif not currently_threshold_down and prev_threshold_down:
+            # Transition to UP (Recovery)
+            if slack_webhook: await send_slack_notification(slack_webhook, endpoint['name'], url, True, status_code, error)
+            if alert_email: await send_email_notification(alert_email, endpoint['name'], url, True, status_code, error)
+
+        # Update Database
         await db.monitored_endpoints.update_one(
             {"_id": ObjectId(endpoint_id)},
             {"$set": {
                 "last_checked": checked_at,
-                "last_status_success": success
+                "last_status_success": success,
+                "is_threshold_down": currently_threshold_down
             }}
         )
 
     except Exception as e:
-        print(f"Error checking endpoint {endpoint_id}: {e}")
+        print(f"Critical error in perform_check for {endpoint_id}: {e}")
 
 async def cleanup_logs():
     """
@@ -302,6 +341,8 @@ class EndpointService:
         endpoint_dict["created_at"] = datetime.utcnow()
         endpoint_dict["last_checked"] = None
         endpoint_dict["owner_email"] = user_email
+        endpoint_dict["last_status_success"] = None
+        endpoint_dict["is_threshold_down"] = False
         
         new_endpoint = await db.monitored_endpoints.insert_one(endpoint_dict)
         created_endpoint = await db.monitored_endpoints.find_one({"_id": new_endpoint.inserted_id})

@@ -60,6 +60,7 @@ class EndpointResponse(EndpointBase):
     owner_email: Optional[str] = None
     created_at: datetime = Field(default_factory=datetime.utcnow)
     last_checked: Optional[datetime] = None
+    last_status_success: Optional[bool] = None
 
     @computed_field
     @property
