@@ -1,16 +1,49 @@
-# React + Vite
+# 🎨 API Monitor - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A sleek, responsive, and interactive dashboard for managing your API monitors.
 
-Currently, two official plugins are available:
+## 🚀 Technologies
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 19:** Functional components with Hooks.
+- **Tailwind CSS:** Utility-first CSS framework for rapid UI development.
+- **Chart.js:** Data visualization for response time history.
+- **Lucide React:** Beautiful, consistent icon set.
+- **Axios:** For API communication with custom interceptors.
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Dark Mode:** System-aware theme toggle with persistent storage.
+- **Live Dashboard:** Auto-refreshing status cards with "UP", "DOWN", or "PENDING" states.
+- **Advanced Details:**
+  - Interactive line charts for latency tracking.
+  - Paginated incident logs.
+  - Dynamic notification settings (Update Slack/Email on the fly).
+- **Authentication:** 
+  - Persistent login via LocalStorage.
+  - **Auto-Logout:** Interceptor automatically redirects to login if the session expires.
 
-## Expanding the ESLint configuration
+## 🛠️ Development
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Scripts
+- `npm run dev`: Starts the Vite development server.
+- `npm run build`: Generates a production-ready build.
+- `npm run lint`: Runs ESLint to check for code quality.
+
+### Layout System
+The application uses a centralized `Layout` component to ensure a consistent experience (Navbar, Theme Toggle, Footer) across all private pages.
+
+## 🏃 How to Run
+
+1. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
+2. **Start Development Server:**
+   ```bash
+   npm run dev
+   ```
+3. **Build for Production:**
+   ```bash
+   npm run build
+   ```
+4. **Environment:** The frontend expects the backend to be running on `http://localhost:8000`. You can change this in `src/constants/api.js`.
