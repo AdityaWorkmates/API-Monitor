@@ -54,6 +54,23 @@ class AuthService:
         await db.users.insert_one(user_dict)
         return user_dict
 
+    @staticmethod
+    async def authenticate_user(email: str, password: str):
+        user = await AuthService.get_user_by_email(email)
+        if not user or not AuthService.verify_password(password, user["password"]):
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Incorrect email or password",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
+        
+        access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
+        access_token = AuthService.create_access_token(
+            data={"sub": user["email"]}, expires_delta=access_token_expires
+        )
+        
+        return {"access_token": access_token, "token_type": "bearer"}
+
 # --- Scheduler & Monitoring Service ---
 scheduler = AsyncIOScheduler()
 
