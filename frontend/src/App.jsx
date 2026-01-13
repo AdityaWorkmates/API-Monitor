@@ -3,6 +3,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import EndpointDetails from "./pages/EndpointDetails";
+import Layout from "./components/Layout";
 
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem("token");
@@ -20,7 +21,9 @@ function App() {
             path="/"
             element={
               <PrivateRoute>
-                <Dashboard />
+                <Layout>
+                  <Dashboard />
+                </Layout>
               </PrivateRoute>
             }
           />
@@ -28,7 +31,9 @@ function App() {
             path="/endpoint/:id"
             element={
               <PrivateRoute>
-                <EndpointDetails />
+                <Layout>
+                  <EndpointDetails />
+                </Layout>
               </PrivateRoute>
             }
           />
