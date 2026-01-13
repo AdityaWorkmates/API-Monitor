@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { endpointAPI } from "../services/api";
 import { Line } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from "chart.js";
-import { ArrowLeft, Clock, CheckCircle, XCircle, RefreshCw } from "lucide-react";
+import { ArrowLeft, Clock, CheckCircle, XCircle, RefreshCw, Settings, Save } from "lucide-react";
 import { format } from "date-fns";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
@@ -14,6 +14,8 @@ export default function EndpointDetails() {
   const [stats, setStats] = useState(null);
   const [logs, setLogs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [updating, setUpdating] = useState(false);
+  const [editData, setEditData] = useState({ slack_webhook_url: "", alert_email: "" });
 
   const fetchData = async () => {
     try {
@@ -25,10 +27,27 @@ export default function EndpointDetails() {
       setEndpoint(epRes.data);
       setStats(statsRes.data);
       setLogs(logsRes.data);
+      setEditData({ 
+        slack_webhook_url: epRes.data.slack_webhook_url || "",
+        alert_email: epRes.data.alert_email || ""
+      });
     } catch (err) {
       console.error("Error fetching details:", err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleUpdate = async () => {
+    setUpdating(true);
+    try {
+      await endpointAPI.update(id, editData);
+      alert("Settings updated successfully");
+      fetchData();
+    } catch (err) {
+      alert("Failed to update settings");
+    } finally {
+      setUpdating(false);
     }
   };
 
@@ -148,7 +167,47 @@ export default function EndpointDetails() {
           </div>
         </div>
       </div>
+
+      <div className="mt-8 bg-white shadow-lg rounded-2xl p-6 border-l-4 border-indigo-600">
+        <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+          <Settings className="text-gray-600" size={20} /> Notification Settings
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">Slack Webhook URL</label>
+            <input
+              type="url"
+              className="w-full border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-indigo-500 outline-none"
+              value={editData.slack_webhook_url}
+              onChange={(e) => setEditData({ ...editData, slack_webhook_url: e.target.value })}
+              placeholder="https://hooks.slack.com/services/..."
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">Alert Email</label>
+            <input
+              type="email"
+              className="w-full border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-indigo-500 outline-none"
+              value={editData.alert_email}
+              onChange={(e) => setEditData({ ...editData, alert_email: e.target.value })}
+              placeholder="alerts@example.com"
+            />
+          </div>
+        </div>
+        <div className="flex justify-end">
+          <button
+            onClick={handleUpdate}
+            disabled={updating}
+            className="bg-indigo-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-indigo-700 shadow-lg flex items-center gap-2 disabled:opacity-50"
+          >
+            {updating ? <RefreshCw className="animate-spin" size={20} /> : <Save size={20} />}
+            Save Changes
+          </button>
+        </div>
+        <p className="mt-4 text-sm text-gray-500 italic">
+          We will notify these channels whenever the status of this API changes.
+        </p>
+      </div>
     </div>
   );
 }
-

@@ -7,7 +7,7 @@ export default function Dashboard() {
   const [endpoints, setEndpoints] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
-  const [newEndpoint, setNewEndpoint] = useState({ name: "", url: "", method: "GET", interval: 60 });
+  const [newEndpoint, setNewEndpoint] = useState({ name: "", url: "", method: "GET", interval: 60, slack_webhook_url: "", alert_email: "" });
   const navigate = useNavigate();
 
   const fetchEndpoints = async () => {
@@ -32,7 +32,7 @@ export default function Dashboard() {
     try {
       await endpointAPI.create(newEndpoint);
       setShowAddModal(false);
-      setNewEndpoint({ name: "", url: "", method: "GET", interval: 60 });
+      setNewEndpoint({ name: "", url: "", method: "GET", interval: 60, slack_webhook_url: "", alert_email: "" });
       fetchEndpoints();
     } catch (err) {
       alert("Failed to add endpoint");
@@ -154,6 +154,26 @@ export default function Dashboard() {
                     onChange={(e) => setNewEndpoint({ ...newEndpoint, interval: parseInt(e.target.value) })}
                   />
                 </div>
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">Slack Webhook URL (Optional)</label>
+                <input
+                  type="url"
+                  className="w-full border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-indigo-500 outline-none"
+                  value={newEndpoint.slack_webhook_url}
+                  onChange={(e) => setNewEndpoint({ ...newEndpoint, slack_webhook_url: e.target.value })}
+                  placeholder="https://hooks.slack.com/services/..."
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">Alert Email (Optional)</label>
+                <input
+                  type="email"
+                  className="w-full border border-gray-300 rounded-xl p-3 focus:ring-2 focus:ring-indigo-500 outline-none"
+                  value={newEndpoint.alert_email}
+                  onChange={(e) => setNewEndpoint({ ...newEndpoint, alert_email: e.target.value })}
+                  placeholder="alerts@example.com"
+                />
               </div>
               <div className="flex justify-end gap-3 mt-8">
                 <button type="button" onClick={() => setShowAddModal(false)} className="px-6 py-2 text-gray-500 font-medium">Cancel</button>

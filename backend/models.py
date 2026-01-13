@@ -37,6 +37,8 @@ class EndpointBase(BaseModel):
     is_active: bool = True
     headers: Optional[Dict[str, str]] = None
     body: Optional[Dict[str, Any]] = None
+    slack_webhook_url: Optional[str] = None
+    alert_email: Optional[EmailStr] = None
     
 class EndpointCreate(EndpointBase):
     pass
@@ -50,6 +52,8 @@ class EndpointUpdate(BaseModel):
     is_active: Optional[bool] = None
     headers: Optional[Dict[str, str]] = None
     body: Optional[Dict[str, Any]] = None
+    slack_webhook_url: Optional[str] = None
+    alert_email: Optional[EmailStr] = None
 
 class EndpointResponse(EndpointBase):
     id: PyObjectId = Field(validation_alias="_id")

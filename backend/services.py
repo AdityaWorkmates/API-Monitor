@@ -1,5 +1,9 @@
 import httpx
 import time
+import smtplib
+import asyncio
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from datetime import datetime, timedelta
 from typing import Optional, List, Dict, Any
 from jose import JWTError, jwt
@@ -74,6 +78,78 @@ class AuthService:
 # --- Scheduler & Monitoring Service ---
 scheduler = AsyncIOScheduler()
 
+async def send_email_notification(to_email: str, endpoint_name: str, url: str, success: bool, status_code: Optional[int], error: Optional[str]):
+    """
+    Sends an email notification using SMTP.
+    """
+    if not settings.SMTP_USER or not settings.SMTP_PASSWORD or not to_email:
+        return
+
+    status_text = "UP" if success else "DOWN"
+    subject = f"API Status Change: {endpoint_name} is {status_text}"
+    
+    body = f"""
+    <h3>API Status Alert</h3>
+    <p>The status of your monitored API has changed.</p>
+    <ul>
+        <li><b>Endpoint:</b> {endpoint_name}</li>
+        <li><b>URL:</b> {url}</li>
+        <li><b>New Status:</b> <span style="color: {'green' if success else 'red'}">{status_text}</span></li>
+        <li><b>Status Code:</b> {status_code if status_code else 'N/A'}</li>
+        <li><b>Error:</b> {error if error else 'None'}</li>
+        <li><b>Checked At:</b> {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC</li>
+    </ul>
+    """
+
+    message = MIMEMultipart()
+    message["From"] = settings.EMAILS_FROM
+    message["To"] = to_email
+    message["Subject"] = subject
+    message.attach(MIMEText(body, "html"))
+
+    def send_sync_email():
+        try:
+            with smtplib.SMTP(settings.SMTP_HOST, settings.SMTP_PORT) as server:
+                server.starttls()
+                server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
+                server.send_message(message)
+        except Exception as e:
+            print(f"Failed to send email notification: {e}")
+
+    await asyncio.to_thread(send_sync_email)
+
+async def send_slack_notification(webhook_url: str, endpoint_name: str, url: str, success: bool, status_code: Optional[int], error: Optional[str]):
+    """
+    Sends a notification to Slack via Webhook.
+    """
+    if not webhook_url:
+        return
+
+    status_text = "UP" if success else "DOWN"
+    color = "#36a64f" if success else "#ff0000"
+    emoji = "✅" if success else "❌"
+    
+    payload = {
+        "attachments": [
+            {
+                "color": color,
+                "title": f"{emoji} API Status Change: {endpoint_name} is {status_text}",
+                "fields": [
+                    {"title": "URL", "value": url, "short": False},
+                    {"title": "Status Code", "value": str(status_code) if status_code else "N/A", "short": True},
+                    {"title": "Error", "value": error if error else "None", "short": True}
+                ],
+                "ts": time.time()
+            }
+        ]
+    }
+    
+    try:
+        async with httpx.AsyncClient() as client:
+            await client.post(webhook_url, json=payload)
+    except Exception as e:
+        print(f"Failed to send Slack notification: {e}")
+
 async def perform_check(endpoint_id: str):
     """
     Background task to check an endpoint's status.
@@ -88,29 +164,21 @@ async def perform_check(endpoint_id: str):
         timeout = endpoint.get('timeout', 5)
         headers = endpoint.get('headers', {})
         body = endpoint.get('body', None)
+        slack_webhook = endpoint.get('slack_webhook_url')
+        alert_email = endpoint.get('alert_email')
+        last_status_success = endpoint.get('last_status_success') # Previous state
 
         start = time.time()
         error = None
         status_code = None
         success = False
 
-        # Add default browser-like headers if not present to avoid being blocked as a bot
+        # Add default browser-like headers if not present
         request_headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
-            "Accept-Language": "en-US,en;q=0.9",
-            "Accept-Encoding": "gzip, deflate, br",
-            "Connection": "keep-alive",
-            "Upgrade-Insecure-Requests": "1",
-            "Sec-Ch-Ua": '"Not_A Brand";v="8", "Chromium";v="120", "Google Chrome";v="120"',
-            "Sec-Ch-Ua-Mobile": "?0",
-            "Sec-Ch-Ua-Platform": '"Windows"',
         }
-        
-        # Override with user-provided headers
         if headers:
-            for k, v in headers.items():
-                request_headers[k] = v
+            request_headers.update(headers)
 
         try:
             async with httpx.AsyncClient(timeout=timeout, follow_redirects=True) as client:
@@ -138,10 +206,24 @@ async def perform_check(endpoint_id: str):
         }
         await db.monitoring_logs.insert_one(log_entry)
 
-        # Update last_checked in endpoint
+        # Trigger notification if status changed
+        if last_status_success is not None and last_status_success != success:
+            if slack_webhook:
+                await send_slack_notification(
+                    slack_webhook, endpoint['name'], url, success, status_code, error
+                )
+            if alert_email:
+                await send_email_notification(
+                    alert_email, endpoint['name'], url, success, status_code, error
+                )
+
+        # Update last_checked and last_status_success in endpoint
         await db.monitored_endpoints.update_one(
             {"_id": ObjectId(endpoint_id)},
-            {"$set": {"last_checked": checked_at}}
+            {"$set": {
+                "last_checked": checked_at,
+                "last_status_success": success
+            }}
         )
 
     except Exception as e:
