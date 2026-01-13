@@ -10,7 +10,10 @@ dependencies = [
     "motor",
     "apscheduler",
     "httpx",
-    "pydantic",
+    "pydantic[email]",
     "pydantic-settings",
-    "python-dotenv"
+    "python-dotenv",
+    "passlib[bcrypt]",
+    "python-jose[cryptography]",
+    "python-multipart",
 ]

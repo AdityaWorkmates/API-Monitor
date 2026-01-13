@@ -1,18 +1,43 @@
-from pydantic import BaseModel, Field, BeforeValidator
-from typing import Optional, Annotated
+from motor.motor_asyncio import AsyncIOMotorClient
+from pydantic import BaseModel, Field, BeforeValidator, EmailStr
+from typing import Optional, Annotated, Dict, Any, List
 from datetime import datetime
+from config import settings
 
+# --- Database Connection ---
+client = AsyncIOMotorClient(settings.MONGO_URI)
+db = client[settings.DATABASE_NAME]
+
+async def get_database():
+    return db
+
+# --- Models / Schemas ---
 # Helper for handling MongoDB ObjectId
 PyObjectId = Annotated[str, BeforeValidator(str)]
 
+# User & Auth
+class UserCreate(BaseModel):
+    email: EmailStr
+    password: str = Field(..., min_length=6)
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    email: Optional[str] = None
+
+# Endpoints
 class EndpointBase(BaseModel):
     name: str = Field(..., min_length=1)
     url: str = Field(..., pattern="^https?://")
     method: str = "GET"
-    interval: int = Field(60, ge=10)  # Minimum 10 seconds
+    interval: int = Field(60, ge=10)
     timeout: int = Field(5, ge=1)
     is_active: bool = True
-
+    headers: Optional[Dict[str, str]] = None
+    body: Optional[Dict[str, Any]] = None
+    
 class EndpointCreate(EndpointBase):
     pass
 
@@ -23,18 +48,20 @@ class EndpointUpdate(BaseModel):
     interval: Optional[int] = None
     timeout: Optional[int] = None
     is_active: Optional[bool] = None
+    headers: Optional[Dict[str, str]] = None
+    body: Optional[Dict[str, Any]] = None
 
 class EndpointResponse(EndpointBase):
     id: Optional[PyObjectId] = Field(alias="_id", default=None)
+    owner_email: Optional[str] = None
     created_at: datetime = Field(default_factory=datetime.utcnow)
     last_checked: Optional[datetime] = None
-    current_status: Optional[str] = None
-    last_response_time: Optional[int] = None
 
     class Config:
         populate_by_name = True
         arbitrary_types_allowed = True
 
+# Monitoring Logs
 class MonitoringLogBase(BaseModel):
     endpoint_id: str
     status_code: Optional[int] = None
