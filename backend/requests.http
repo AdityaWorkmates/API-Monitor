@@ -1,0 +1,38 @@
+### 1. Health Check
+GET http://localhost:8000/health
+
+### 2. Create a new Endpoint to Monitor
+POST http://localhost:8000/endpoints
+Content-Type: application/json
+
+{
+  "name": "Google Health Check",
+  "url": "https://www.google.com",
+  "method": "GET",
+  "interval": 30,
+  "timeout": 5
+}
+
+### 3. List all Monitored Endpoints
+GET http://localhost:8000/endpoints
+
+### 4. Get a Specific Endpoint (Replace ID with a real ID from the list above)
+GET http://localhost:8000/endpoints/YOUR_ENDPOINT_ID_HERE
+
+### 5. Update an Endpoint
+PUT http://localhost:8000/endpoints/YOUR_ENDPOINT_ID_HERE
+Content-Type: application/json
+
+{
+  "interval": 60,
+  "is_active": false
+}
+
+### 6. Get Stats for an Endpoint
+GET http://localhost:8000/stats/YOUR_ENDPOINT_ID_HERE
+
+### 7. Get Logs for an Endpoint
+GET http://localhost:8000/logs/YOUR_ENDPOINT_ID_HERE?limit=10
+
+### 8. Delete an Endpoint
+DELETE http://localhost:8000/endpoints/YOUR_ENDPOINT_ID_HERE

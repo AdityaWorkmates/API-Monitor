@@ -1,0 +1,109 @@
+C:\API-Monitor\frontend>npm create vite@latest .
+
+> npx
+> create-vite .
+
+|
+o  Select a framework:
+|  React
+|
+o  Select a variant:
+|  JavaScript
+|
+o  Use rolldown-vite (Experimental)?:
+|  Yes
+|
+o  Install with npm and start now?
+|  Yes
+|
+o  Scaffolding project in C:\API-Monitor\frontend...
+|
+o  Installing dependencies with npm...
+npm warn EBADENGINE Unsupported engine {
+npm warn EBADENGINE   package: '@vitejs/plugin-react@5.1.2',
+npm warn EBADENGINE   required: { node: '^20.19.0 || >=22.12.0' },
+npm warn EBADENGINE   current: { node: 'v22.11.0', npm: '11.7.0' }
+npm warn EBADENGINE }
+npm warn EBADENGINE Unsupported engine {
+npm warn EBADENGINE   package: 'rolldown-vite@7.2.5',
+npm warn EBADENGINE   required: { node: '^20.19.0 || >=22.12.0' },
+npm warn EBADENGINE   current: { node: 'v22.11.0', npm: '11.7.0' }
+npm warn EBADENGINE }
+npm warn EBADENGINE Unsupported engine {
+npm warn EBADENGINE   package: '@oxc-project/runtime@0.97.0',
+npm warn EBADENGINE   required: { node: '^20.19.0 || >=22.12.0' },
+npm warn EBADENGINE   current: { node: 'v22.11.0', npm: '11.7.0' }
+npm warn EBADENGINE }
+npm warn EBADENGINE Unsupported engine {
+npm warn EBADENGINE   package: 'rolldown@1.0.0-beta.50',
+npm warn EBADENGINE   required: { node: '^20.19.0 || >=22.12.0' },
+npm warn EBADENGINE   current: { node: 'v22.11.0', npm: '11.7.0' }
+npm warn EBADENGINE }
+
+added 159 packages, and audited 160 packages in 38s
+
+36 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+|
+o  Starting dev server...
+
+> frontend@0.0.0 dev
+> vite
+
+You are using Node.js 22.11.0. Vite requires Node.js version 20.19+ or 22.12+. Please upgrade your Node.js version.
+file:///C:/API-Monitor/frontend/node_modules/rolldown/dist/shared/binding-DkT6owYZ.mjs:492
+                if (loadErrors.length > 0) throw new Error("Cannot find native binding. npm has a bug related to optional dependencies (https://github.com/npm/cli/issues/4828). Please try `npm i` again after removing both package-lock.json and node_modules directory.", { cause: loadErrors.reduce((err, cur) => {
+                                                 ^
+
+Error: Cannot find native binding. npm has a bug related to optional dependencies (https://github.com/npm/cli/issues/4828). Please try `npm i` again after removing both package-lock.json and node_modules directory.
+    at src/binding.cjs (file:///C:/API-Monitor/frontend/node_modules/rolldown/dist/shared/binding-DkT6owYZ.mjs:492:36)
+    at file:///C:/API-Monitor/frontend/node_modules/rolldown/dist/shared/binding-DkT6owYZ.mjs:6:49
+    at file:///C:/API-Monitor/frontend/node_modules/rolldown/dist/shared/parse-ast-index-w6oTGOhH.mjs:42:22
+    at ModuleJob.run (node:internal/modules/esm/module_job:268:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:543:26)
+    at async CAC.<anonymous> (file:///C:/API-Monitor/frontend/node_modules/vite/dist/node/cli.js:570:27) {
+  [cause]: Error: Cannot find module '@rolldown/binding-win32-x64-msvc'
+  Require stack:
+  - C:\API-Monitor\frontend\node_modules\rolldown\dist\shared\binding-DkT6owYZ.mjs
+      at Function._resolveFilename (node:internal/modules/cjs/loader:1249:15)
+      ... 4 lines matching cause stack trace ...
+      at require (node:internal/modules/helpers:141:16)
+      at requireNative (file:///C:/API-Monitor/frontend/node_modules/rolldown/dist/shared/binding-DkT6owYZ.mjs:133:21)
+      at src/binding.cjs (file:///C:/API-Monitor/frontend/node_modules/rolldown/dist/shared/binding-DkT6owYZ.mjs:461:18)
+      at file:///C:/API-Monitor/frontend/node_modules/rolldown/dist/shared/binding-DkT6owYZ.mjs:6:49
+      at file:///C:/API-Monitor/frontend/node_modules/rolldown/dist/shared/parse-ast-index-w6oTGOhH.mjs:42:22 {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: [
+      'C:\\API-Monitor\\frontend\\node_modules\\rolldown\\dist\\shared\\binding-DkT6owYZ.mjs'
+    ],
+    cause: Error: Cannot find module './rolldown-binding.win32-x64-msvc.node'
+    Require stack:
+    - C:\API-Monitor\frontend\node_modules\rolldown\dist\shared\binding-DkT6owYZ.mjs
+        at Function._resolveFilename (node:internal/modules/cjs/loader:1249:15)
+        at Function._load (node:internal/modules/cjs/loader:1075:27)
+        at TracingChannel.traceSync (node:diagnostics_channel:315:14)
+        at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)
+        at Module.require (node:internal/modules/cjs/loader:1340:12)
+        at require (node:internal/modules/helpers:141:16)
+        at requireNative (file:///C:/API-Monitor/frontend/node_modules/rolldown/dist/shared/binding-DkT6owYZ.mjs:128:12)
+        at src/binding.cjs (file:///C:/API-Monitor/frontend/node_modules/rolldown/dist/shared/binding-DkT6owYZ.mjs:461:18)
+        at file:///C:/API-Monitor/frontend/node_modules/rolldown/dist/shared/binding-DkT6owYZ.mjs:6:49
+        at file:///C:/API-Monitor/frontend/node_modules/rolldown/dist/shared/parse-ast-index-w6oTGOhH.mjs:42:22 {
+      code: 'MODULE_NOT_FOUND',
+      requireStack: [
+        'C:\\API-Monitor\\frontend\\node_modules\\rolldown\\dist\\shared\\binding-DkT6owYZ.mjs'
+      ]
+    }
+  }
+}
+
+Node.js v22.11.0
+npm error code 1
+npm error path C:\API-Monitor\frontend
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c create-vite .
+npm error A complete log of this run can be found in: C:\Users\Aditya Dey\AppData\Local\npm-cache\_logs\2026-01-13T09_14_02_327Z-debug-0.log
+
+C:\API-Monitor\frontend>
