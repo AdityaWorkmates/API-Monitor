@@ -5,7 +5,7 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
-from controllers import router
+from routes import router
 from services import MonitoringService
 
 # Configure logging

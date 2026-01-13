@@ -267,19 +267,19 @@ class EndpointService:
             raise HTTPException(status_code=404, detail="Endpoint not found")
 
     @staticmethod
-    async def get_logs(endpoint_id: str, limit: int = 50):
-        if not ObjectId.is_valid(endpoint_id):
-            raise HTTPException(status_code=400, detail="Invalid ID format")
-            
+    async def get_logs(endpoint_id: str, user_email: str, limit: int = 50):
+        # Verify ownership
+        await EndpointService.get_endpoint_by_id(endpoint_id, user_email)
+        
         logs = await db.monitoring_logs.find(
             {"endpoint_id": endpoint_id}
         ).sort("checked_at", -1).limit(limit).to_list(limit)
         return logs
 
     @staticmethod
-    async def get_stats(endpoint_id: str):
-        if not ObjectId.is_valid(endpoint_id):
-            raise HTTPException(status_code=400, detail="Invalid ID format")
+    async def get_stats(endpoint_id: str, user_email: str):
+        # Verify ownership
+        await EndpointService.get_endpoint_by_id(endpoint_id, user_email)
         
         pipeline = [
             {"$match": {"endpoint_id": endpoint_id}},
